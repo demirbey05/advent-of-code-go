@@ -18,7 +18,6 @@ func FindRootFromDiscriminant(a, b, c int) []float64 {
 	var root []float64
 	root = append(root, (float64(-b)+math.Sqrt(float64(discriminant)))/float64(2*a))
 	root = append(root, (float64(-b)-math.Sqrt(float64(discriminant)))/float64(2*a))
-	log.Println("Root: for a:", root, a)
 	return root
 }
 
@@ -66,5 +65,12 @@ func TestKerning(t *testing.T) {
 
 	result1 := FindNumberOfWayToWin(60808676, 601116315591300)
 	log.Println("The result is ", result1)
+
+}
+
+func BenchmarkKerning(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		FindNumberOfWayToWin(60808676, 601116315591300)
+	}
 
 }
